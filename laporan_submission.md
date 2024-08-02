@@ -1,4 +1,4 @@
-# Laporan Proyek Machine Learning - Nama Anda
+# Laporan Proyek Machine Learning - Jericho Luthfi Syahli
 
 ## Domain Proyek
 
@@ -37,8 +37,8 @@ Beberapa teknik dilakukan untuk memahami data salah satunya adalah Correlation u
 
 ## Data Preparation
 Proses data preparation meliputi:
-- Checking Outlier = Melihat dan membersihkan outlier yang ada. Pembersihan dilakukan dengan menghapus outlier.
-- Split Data: Membagi data menjadi set pelatihan dan pengujian. Dilakukan pembagian 80:20
+- Checking Outlier : Melihat dan membersihkan outlier yang ada. Pembersihan dilakukan dengan menghapus outlier.
+- Split Data: Membagi data menjadi set pelatihan dan pengujian. Dilakukan pembagian 80:20 untuk training dan testing data.
 - Feature Scaling: Menggunakan MinMaxScaler untuk menskalakan fitur sehingga berada dalam rentang [0, 1]. Scaling dilakukan terlebih dahulu untuk data training. Lalu saat model akan dievaluasi data testing baru discaling.
   
 ## Modeling
