@@ -64,6 +64,11 @@ Dataset yang digunakan adalah data historis harga saham yang dapat diunduh dari 
 ## Modeling
 
 ### Random Forest Regressor
+- Cara Kerjanya: Random Forest membuat beberapa pohon keputusan selama pelatihan dan menghasilkan rata-rata prediksi dari pohon-pohon individual untuk tugas regresi. Ini mengurangi overfitting dengan merata-ratakan banyak pohon.
+- Kelebihan: Menangani dataset besar dengan baik, mengurangi overfitting, dan memberikan pentingnya fitur.
+- Kekurangan: Dapat memerlukan sumber daya komputasi yang besar, dan model bisa menjadi besar dan kompleks.
+
+#### Best Paramater
 
 - **n_estimators**: 200 - Jumlah pohon keputusan dalam hutan.
     - Alasan: Semakin banyak pohon dalam Random Forest, semakin baik kemampuannya dalam menggeneralisasi data dan mengurangi overfitting. Dengan 200 pohon, model dapat  memanfaatkan lebih banyak keputusan individu untuk membuat prediksi yang lebih akurat dan stabil. 
@@ -75,6 +80,12 @@ Dataset yang digunakan adalah data historis harga saham yang dapat diunduh dari 
     - Alasan: Mengatur n_jobs ke -1 memungkinkan model untuk memanfaatkan semua core CPU yang tersedia, yang mempercepat pelatihan model secara signifikan agar berjalan secara paralel
 
 ### XGBoost
+
+- Cara Kerjanya: XGBoost membangun ansambel pohon secara berurutan, di mana setiap pohon memperbaiki kesalahan dari pohon sebelumnya. Ini menggunakan boosting gradien untuk mengoptimalkan kinerja model.
+- Kelebihan: Performa dan akurasi tinggi, menangani nilai yang hilang, dan memiliki regularisasi bawaan.
+- Kekurangan: Dapat kompleks untuk disetel, dan mungkin memerlukan waktu pelatihan yang lebih lama.
+
+#### Best Parameter
 
 - **learning_rate**: 0.08 - Kecepatan pembelajaran untuk model.
     - Alasan : Learning rate 0.08 dipilih setelah mencoba berbagai learning rate.Learning rate yang terlalu tinggi bisa menyebabkan model tidak stabil dan overfitting, sementara learning rate yang terlalu rendah mungkin memerlukan lebih banyak iterasi untuk mencapai hasil yang optimal
@@ -90,6 +101,8 @@ Dataset yang digunakan adalah data historis harga saham yang dapat diunduh dari 
 ### Metrik Evaluasi
 
 - **Mean Squared Error (MSE)**: Metrik evaluasi yang digunakan untuk mengukur performa model. MSE mengukur rata-rata dari kuadrat selisih antara nilai yang diprediksi dan nilai aktual. MSE yang lebih kecil menunjukkan model yang lebih baik.
+
+  Rumus: MSE=1n∑i=1n(yi−yi^)2MSE=n1​∑i=1n​(yi​−yi​^​)2
 
 ### Hasil Evaluasi
 
