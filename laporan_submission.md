@@ -2,65 +2,102 @@
 
 ## Domain Proyek
 
-Proyek ini bertujuan untuk memprediksi harga salah satu saham berdasarkan data historis saham tersebut. Hal ini dapat bermanfaat sebagai salah satu insight dalam memprediksi kapan waktu yang tepat untuk membeli saham.
-  
+### Pengenalan dan Konteks
+
+Saham adalah salah satu instrumen investasi yang memungkinkan individu dan institusi untuk memiliki bagian kepemilikan dalam perusahaan. Memahami harga saham penting karena membantu investor dalam pengambilan keputusan investasi yang lebih baik. Proyek ini bertujuan untuk memprediksi harga saham berdasarkan data historis, memberikan insight mengenai kapan waktu yang tepat untuk membeli atau menjual saham.
+
+### Masalah yang Dihadapi
+
+Investor sering menghadapi tantangan dalam memprediksi pergerakan harga saham yang fluktuatif. Ketidakpastian ini dapat menyebabkan keputusan investasi yang kurang optimal. Dengan memprediksi harga saham secara lebih akurat, investor dapat mengurangi risiko dan memaksimalkan keuntungan.
+
+### Tujuan Proyek
+
+Tujuan proyek ini adalah membangun model Machine Learning yang dapat memprediksi harga saham dengan akurat. Model ini akan membantu investor dalam membuat keputusan investasi yang lebih informed. Proyek ini juga bertujuan untuk mengidentifikasi fitur-fitur yang paling berpengaruh terhadap harga saham.
+
+### Manfaat Proyek
+
+Manfaat dari proyek ini meliputi:
+- Memberikan alat yang dapat digunakan oleh investor untuk memprediksi harga saham dengan lebih akurat.
+- Mengidentifikasi faktor-faktor kunci yang mempengaruhi harga saham, sehingga membantu dalam strategi investasi.
+- Meningkatkan pemahaman tentang dinamika harga saham berdasarkan data historis.
 
 ## Business Understanding
 
 ### Problem Statements
 
-Menjelaskan pernyataan masalah latar belakang:
 - Bagaimana cara memprediksi harga saham menggunakan data historis?
 - Apa faktor-faktor yang paling mempengaruhi harga saham?
-  
+
 ### Goals
 
-Menjelaskan tujuan dari pernyataan masalah:
-- Menggunakan algoritma Random Forest untuk membangun model prediksi harga saham.
-- Mengidentifikasi fitur-fitur penting dari data yang mempengaruhi harga saham.
+- Membangun model prediksi harga saham menggunakan algoritma Machine Learning.
+- Mengidentifikasi fitur-fitur penting yang mempengaruhi harga saham.
 
-    ### Solution statements
-    - Saya menggunakan 2 Algoritma dengan hyperparameter tuning. 2 Algoritma tersebut adalah Random Forest dan XGBoost untuk melihat mana yang paling cocok.
-    - Mengevaluasi performa model dengan metrik MSE.
+### Solution Statements
+
+- Menggunakan dua algoritma Machine Learning, yaitu Random Forest dan XGBoost, dengan hyperparameter tuning untuk menentukan model yang paling efektif.
+- Mengevaluasi performa model dengan metrik Mean Squared Error (MSE) untuk memilih model terbaik.
 
 ## Data Understanding
-Dataset yang digunakan adalah data historis harga saham yang mencakup beberapa variabel penting. Data ini dapat diunduh dari [Data](https://finance.yahoo.com/quote/BBRI.JK/history/). Berikut adalah variabel yang ada dalam dataset:
 
-- Open: Harga pembukaan saham pada hari tertentu.
-- High: Harga tertinggi saham pada hari tertentu.
-- Low: Harga terendah saham pada hari tertentu.
-- Adj Close: Harga penutupan yang disesuaikan untuk dividen dan pemecahan saham.
-- Volume: Jumlah saham yang diperdagangkan pada hari tertentu.
-- Close: Harga penutupan saham pada hari tertentu (target yang diprediksi).
+Dataset yang digunakan adalah data historis harga saham yang dapat diunduh dari [Data](https://finance.yahoo.com/quote/BBRI.JK/history/). Dataset ini mencakup variabel-variabel berikut:
+- **Open**: Harga pembukaan saham pada hari tertentu.
+- **High**: Harga tertinggi saham pada hari tertentu.
+- **Low**: Harga terendah saham pada hari tertentu.
+- **Adj Close**: Harga penutupan yang disesuaikan untuk dividen dan pemecahan saham.
+- **Volume**: Jumlah saham yang diperdagangkan pada hari tertentu.
+- **Close**: Harga penutupan saham pada hari tertentu (target yang diprediksi).
 
-Beberapa teknik dilakukan untuk memahami data salah satunya adalah Correlation untuk melihat relationship yang dimiliki tiap kolom. 
+### Informasi Data
+- **Ukuran Data Frame**: (5134, 6) sebelum diclean, (4799, 6) setelah diclean
+- **Kondisi Data**: Data memiliki Outlier, berjumlah 35
+- **Statistik Deskriptif**: 
 
 ## Data Preparation
-Proses data preparation meliputi:
-- Checking Outlier : Melihat dan membersihkan outlier yang ada. Pembersihan dilakukan dengan menghapus outlier.
-- Split Data: Membagi data menjadi set pelatihan dan pengujian. Dilakukan pembagian 80:20 untuk training dan testing data.
-- Feature Scaling: Menggunakan MinMaxScaler untuk menskalakan fitur sehingga berada dalam rentang [0, 1]. Scaling dilakukan terlebih dahulu untuk data training. Lalu saat model akan dievaluasi data testing baru discaling.
-  
-## Modeling
-Model Random Forest Regressor.
-    Parameter:
-        n_estimators: 200
-        max_depth: 8
-        random_state: 55
-        n_jobs: -1
 
-Model XGBoost
-   Parameter:
-        learning_rate = 0.08
-        n_estimators = 200
-        max_depth = 4
-        random_state: 55
-        
-Setelah mengevaluasi kedua model, yaitu Random Forest dan XGBoost, model Random Forest menunjukkan performa yang lebih baik dalam hal MSE. Berdasarkan hasil ini, Random Forest dipilih sebagai model terbaik untuk memprediksi harga saham karena memiliki performa lebih baik dalam memprediksi harga saham. Dan juga memiliki nilai MSE yang lebih kecil dibanding dengan XGBoost.
+### Tahapan Data Preparation
+
+- **Checking Outlier**: Outlier diidentifikasi dan dihapus untuk memastikan kualitas data yang baik.
+- **Split Data**: Data dibagi menjadi set pelatihan (80%) dan set pengujian (20%).
+- **Feature Scaling**: Menggunakan MinMaxScaler untuk menskalakan fitur ke rentang [0, 1]. Scaling diterapkan terlebih dahulu pada data training, kemudian data testing discaling.
+
+## Modeling
+
+### Random Forest Regressor
+
+- **n_estimators**: 200 - Jumlah pohon keputusan dalam hutan.
+    - Alasan: Semakin banyak pohon dalam Random Forest, semakin baik kemampuannya dalam menggeneralisasi data dan mengurangi overfitting. Dengan 200 pohon, model dapat  memanfaatkan lebih banyak keputusan individu untuk membuat prediksi yang lebih akurat dan stabil. 
+- **max_depth**: 8 - Kedalaman maksimum dari setiap pohon keputusan.
+    - Alasan : Nilai 8 dipilih dikarenakan  kompromi yang baik untuk menyeimbangkan kemampuan model dalam menangkap pola data tanpa menjadi terlalu rumit.
+- **random_state**: 55 - Nilai acak untuk memastikan hasil yang konsisten.
+    - Alasan: Menggunakan random_state memastikan bahwa hasil pelatihan model dapat direproduksi. 
+- **n_jobs**: -1 - Menggunakan semua CPU yang tersedia untuk mempercepat proses pelatihan.
+    - Alasan: Mengatur n_jobs ke -1 memungkinkan model untuk memanfaatkan semua core CPU yang tersedia, yang mempercepat pelatihan model secara signifikan agar berjalan secara paralel
+
+### XGBoost
+
+- **learning_rate**: 0.08 - Kecepatan pembelajaran untuk model.
+    - Alasan : Learning rate 0.08 dipilih setelah mencoba berbagai learning rate.Learning rate yang terlalu tinggi bisa menyebabkan model tidak stabil dan overfitting, sementara learning rate yang terlalu rendah mungkin memerlukan lebih banyak iterasi untuk mencapai hasil yang optimal
+- **n_estimators**: 200 - Jumlah iterasi boosting.
+    - Alasan : Dengan nilai 200, model memiliki keseimbangan antara menangkap pola data dan menjaga performa yang stabil.
+- **max_depth**: 4 - Kedalaman maksimum pohon keputusan.
+    - Alasan : Nilai 4 memastikan model tidak terlalu kompleks tetapi cukup kuat untuk menangkap hubungan yang ada dalam data.
+- **random_state**: 55 - Nilai acak untuk konsistensi hasil.
+    - Alasan : Menggunakan random_state memastikan bahwa hasil pelatihan model dapat direproduksi. 
 
 ## Evaluation
-Evaluasi dilakukan dengan menggunakan:
-    Mean Squared Error (MSE)
 
-Setelah itu dilakukan plotting untuk perbandingan prediction vs actual keseluruhan data.
+### Metrik Evaluasi
 
+- **Mean Squared Error (MSE)**: Metrik evaluasi yang digunakan untuk mengukur performa model. MSE mengukur rata-rata dari kuadrat selisih antara nilai yang diprediksi dan nilai aktual. MSE yang lebih kecil menunjukkan model yang lebih baik.
+
+### Hasil Evaluasi
+
+- **Random Forest**: Menunjukkan nilai MSE yang lebih rendah dibandingkan dengan XGBoost.
+- **XGBoost**: Memiliki nilai MSE yang lebih tinggi dibandingkan dengan Random Forest.
+
+### Dampak Evaluasi terhadap Business Understanding
+
+- **Problem Statement**: Model Random Forest berhasil menjawab permasalahan dengan memberikan prediksi harga saham yang lebih akurat dibandingkan model XGBoost.
+- **Goals**: Tujuan proyek untuk membangun model prediksi yang efektif tercapai dengan memilih Random Forest sebagai model terbaik.
+- **Solution Statement**: Solusi yang diterapkan memberikan dampak positif dengan meningkatkan akurasi prediksi harga saham dan memenuhi kebutuhan investor untuk keputusan investasi yang lebih informed.
