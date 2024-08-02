@@ -35,7 +35,7 @@ Manfaat dari proyek ini meliputi:
 
 ### Solution Statements
 
-- Menggunakan dua algoritma Machine Learning, yaitu Random Forest dan XGBoost, dengan hyperparameter tuning untuk menentukan model yang paling efektif.
+- Menggunakan dua algoritma Machine Learning, yaitu Random Forest dan XGBoost, dengan manual paramater tuning untuk menentukan model yang paling efektif.
 - Mengevaluasi performa model dengan metrik Mean Squared Error (MSE) untuk memilih model terbaik.
 
 ## Data Understanding
@@ -64,6 +64,7 @@ Dataset yang digunakan adalah data historis harga saham yang dapat diunduh dari 
 ## Modeling
 
 ### Random Forest Regressor
+Random Forest adalah algoritma ensemble yang menggabungkan beberapa pohon keputusan untuk meningkatkan akurasi prediksi dan mengurangi overfitting. 
 - Cara Kerjanya: Random Forest membuat beberapa pohon keputusan selama pelatihan dan menghasilkan rata-rata prediksi dari pohon-pohon individual untuk tugas regresi. Ini mengurangi overfitting dengan merata-ratakan banyak pohon.
 - Kelebihan: Menangani dataset besar dengan baik, mengurangi overfitting, dan memberikan pentingnya fitur.
 - Kekurangan: Dapat memerlukan sumber daya komputasi yang besar, dan model bisa menjadi besar dan kompleks.
@@ -80,6 +81,7 @@ Dataset yang digunakan adalah data historis harga saham yang dapat diunduh dari 
     - Alasan: Mengatur n_jobs ke -1 memungkinkan model untuk memanfaatkan semua core CPU yang tersedia, yang mempercepat pelatihan model secara signifikan agar berjalan secara paralel
 
 ### XGBoost
+XGBoost adalah algoritma boosting yang mengoptimalkan model dengan memperbaiki kesalahan dari model-model sebelumnya.
 
 - Cara Kerjanya: XGBoost membangun ansambel pohon secara berurutan, di mana setiap pohon memperbaiki kesalahan dari pohon sebelumnya. Ini menggunakan boosting gradien untuk mengoptimalkan kinerja model.
 - Kelebihan: Performa dan akurasi tinggi, menangani nilai yang hilang, dan memiliki regularisasi bawaan.
@@ -105,9 +107,21 @@ Dataset yang digunakan adalah data historis harga saham yang dapat diunduh dari 
   Rumus: MSE=1n∑i=1n(yi−yi^)2MSE=n1​∑i=1n​(yi​−yi​^​)2
 
 ### Hasil Evaluasi
+![gambar](https://github.com/user-attachments/assets/409cc116-0570-484f-886d-c61f7b55cb4b)
 
-- **Random Forest**: Menunjukkan nilai MSE yang lebih rendah dibandingkan dengan XGBoost.
-- **XGBoost**: Memiliki nilai MSE yang lebih tinggi dibandingkan dengan Random Forest.
+#### Analisis Hasil
+- Random Forest:
+    Train MSE: 0.188381
+    Test MSE: 0.366601
+Random Forest menunjukkan performa yang lebih baik pada data pelatihan dibandingkan data uji, tetapi perbedaan antara Train MSE dan Test MSE menunjukkan adanya overfitting. Model ini mungkin terlalu cocok dengan data pelatihan dan tidak generalisasi dengan baik ke data uji.
+
+- Boosting:
+      Train MSE: 0.261435
+      Test MSE: 0.449671
+Boosting juga menunjukkan performa yang lebih baik pada data pelatihan dibandingkan data uji, tetapi perbedaan antara Train MSE dan Test MSE lebih besar daripada Random Forest. Ini menunjukkan bahwa Boosting mungkin mengalami overfitting lebih parah dibandingkan Random Forest.
+
+#### Kesimpulan
+Berdasarkan hasil MSE, Random Forest tampaknya lebih baik dibandingkan Boosting karena MSE-nya pada data uji (0.366601) lebih rendah dibandingkan Boosting (0.449671). Ini menunjukkan bahwa Random Forest mungkin lebih baik dalam generalisasi ke data baru. Meskipun kedua model menunjukkan tanda-tanda overfitting, Random Forest memiliki kinerja yang lebih stabil di data uji dibandingkan Boosting.
 
 ### Dampak Evaluasi terhadap Business Understanding
 
