@@ -104,7 +104,18 @@ XGBoost adalah algoritma boosting yang mengoptimalkan model dengan memperbaiki k
 
 - **Mean Squared Error (MSE)**: Metrik evaluasi yang digunakan untuk mengukur performa model. MSE mengukur rata-rata dari kuadrat selisih antara nilai yang diprediksi dan nilai aktual. MSE yang lebih kecil menunjukkan model yang lebih baik.
 
-  Rumus: MSE=1n∑i=1n(yi−yi^)2MSE=n1​∑i=1n​(yi​−yi​^​)2
+  Rumus: ![gambar](https://github.com/user-attachments/assets/32b75d48-db96-400e-8147-a804e6017167)
+
+    - yi​ adalah nilai aktual dari data ke-i.
+    - y^iy^​i​ adalah nilai prediksi dari model untuk data ke-i.
+    - nn adalah jumlah total data.
+
+Interpretasi MSE
+
+- Ukuran Kesalahan Rata-Rata: MSE memberikan ukuran dari rata-rata kesalahan kuadrat model. Nilai MSE yang lebih rendah menunjukkan bahwa model memiliki kesalahan yang lebih kecil dalam prediksi, dan dengan demikian, performa model lebih baik.
+- Skala Kesalahan: Karena MSE melibatkan kuadrat dari selisih antara nilai aktual dan prediksi, MSE lebih sensitif terhadap outlier dibandingkan dengan beberapa metrik lain seperti Mean Absolute Error (MAE). Kesalahan besar akan memberikan kontribusi yang lebih besar pada MSE dibandingkan kesalahan kecil.
+- Unit Pengukuran: MSE memiliki unit yang sama dengan kuadrat dari unit data asli. Misalnya, jika data asli adalah harga dalam dolar, maka MSE akan memiliki unit dolar kuadrat. Ini berarti interpretasi langsung dari nilai MSE mungkin tidak selalu intuitif karena tidak berada dalam skala yang sama dengan data asli.
+- Perbandingan Model: MSE dapat digunakan untuk membandingkan performa beberapa model regresi. Model dengan MSE lebih rendah dianggap lebih baik karena menunjukkan bahwa prediksi model lebih mendekati nilai aktual.
 
 ### Hasil Evaluasi
 ![gambar](https://github.com/user-attachments/assets/409cc116-0570-484f-886d-c61f7b55cb4b)
