@@ -49,7 +49,7 @@ Model Random Forest Regressor.
         random_state: 55
         n_jobs: -1
 
-ModelXGBoost
+Model XGBoost
    Parameter:
         learning_rate = 0.08
         n_estimators = 200
