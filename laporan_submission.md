@@ -51,7 +51,9 @@ Dataset yang digunakan adalah data historis harga saham yang dapat diunduh dari 
 ### Informasi Data
 - **Ukuran Data Frame**: (5134, 6) sebelum diclean, (4799, 6) setelah diclean
 - **Kondisi Data**: Data memiliki Outlier, berjumlah 35
-- **Statistik Deskriptif**: 
+- **Statistik Deskriptif**:
+  
+  ![gambar](https://github.com/user-attachments/assets/3ed826fc-1cef-4fe1-bef3-358e2cebdba7)
 
 ## Data Preparation
 
@@ -69,8 +71,8 @@ Random Forest adalah algoritma ensemble yang menggabungkan beberapa pohon keputu
 - Kelebihan: Menangani dataset besar dengan baik, mengurangi overfitting, dan memberikan pentingnya fitur.
 - Kekurangan: Dapat memerlukan sumber daya komputasi yang besar, dan model bisa menjadi besar dan kompleks.
 
-#### Best Paramater
-
+#### Paramater
+Parameter ini didapat dengan mencoba berbagai parameter secara manual. 
 - **n_estimators**: 200 - Jumlah pohon keputusan dalam hutan.
     - Alasan: Semakin banyak pohon dalam Random Forest, semakin baik kemampuannya dalam menggeneralisasi data dan mengurangi overfitting. Dengan 200 pohon, model dapat  memanfaatkan lebih banyak keputusan individu untuk membuat prediksi yang lebih akurat dan stabil. 
 - **max_depth**: 8 - Kedalaman maksimum dari setiap pohon keputusan.
@@ -87,8 +89,8 @@ XGBoost adalah algoritma boosting yang mengoptimalkan model dengan memperbaiki k
 - Kelebihan: Performa dan akurasi tinggi, menangani nilai yang hilang, dan memiliki regularisasi bawaan.
 - Kekurangan: Dapat kompleks untuk disetel, dan mungkin memerlukan waktu pelatihan yang lebih lama.
 
-#### Best Parameter
-
+#### Parameter
+Parameter ini didapat dengan mencoba berbagai parameter secara manual. 
 - **learning_rate**: 0.08 - Kecepatan pembelajaran untuk model.
     - Alasan : Learning rate 0.08 dipilih setelah mencoba berbagai learning rate.Learning rate yang terlalu tinggi bisa menyebabkan model tidak stabil dan overfitting, sementara learning rate yang terlalu rendah mungkin memerlukan lebih banyak iterasi untuk mencapai hasil yang optimal
 - **n_estimators**: 200 - Jumlah iterasi boosting.
@@ -107,8 +109,8 @@ XGBoost adalah algoritma boosting yang mengoptimalkan model dengan memperbaiki k
   Rumus: ![gambar](https://github.com/user-attachments/assets/32b75d48-db96-400e-8147-a804e6017167)
 
     - yi​ adalah nilai aktual dari data ke-i.
-    - y^iy^​i​ adalah nilai prediksi dari model untuk data ke-i.
-    - nn adalah jumlah total data.
+    - y^​i​ adalah nilai prediksi dari model untuk data ke-i.
+    - n adalah jumlah total data.
 
 Interpretasi MSE
 
