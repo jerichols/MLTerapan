@@ -131,7 +131,7 @@ Random Forest menunjukkan performa yang lebih baik pada data pelatihan dibanding
   - Feature Importance
     
     Skor kepentingan fitur  menunjukkan seberapa besar kontribusi masing-masing fitur terhadap prediksi model :
-    
+    ![gambar](https://github.com/user-attachments/assets/c946e4cc-9f24-4721-87ef-66016ce42853)
     - Low (0.656859): Fitur ini memiliki skor kepentingan tertinggi, yang berarti memiliki pengaruh terbesar terhadap prediksi harga saham oleh model.
     - High (0.221128): Fitur ini juga cukup penting, tetapi tidak sebesar Low.
     - Open (0.111589): Fitur ini berkontribusi moderat terhadap prediksi.
@@ -144,6 +144,7 @@ Random Forest menunjukkan performa yang lebih baik pada data pelatihan dibanding
 Boosting juga menunjukkan performa yang lebih baik pada data pelatihan dibandingkan data uji, tetapi perbedaan antara Train MSE dan Test MSE lebih besar daripada Random Forest. Ini menunjukkan bahwa Boosting mungkin mengalami overfitting lebih parah dibandingkan Random Forest.
 
   - Feature Importance
+    
       - Low (0.675950): Fitur ini juga merupakan fitur paling penting menurut model XGBoost, hampir sama dengan Random Forest.
       - High (0.213537): Fitur ini juga penting, dengan kontribusi yang mirip dengan Random Forest.
       - Open (0.089589): Fitur ini memiliki pengaruh lebih kecil dibandingkan dengan Low dan High.
