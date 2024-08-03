@@ -106,7 +106,9 @@ Parameter ini didapat dengan mencoba berbagai parameter secara manual.
 
 - **Mean Squared Error (MSE)**: Metrik evaluasi yang digunakan untuk mengukur performa model. MSE mengukur rata-rata dari kuadrat selisih antara nilai yang diprediksi dan nilai aktual. MSE yang lebih kecil menunjukkan model yang lebih baik.
 
-  Rumus: ![gambar](https://github.com/user-attachments/assets/32b75d48-db96-400e-8147-a804e6017167)
+  Rumus:
+  
+   ![gambar](https://github.com/user-attachments/assets/32b75d48-db96-400e-8147-a804e6017167)
 
     - yi​ adalah nilai aktual dari data ke-i.
     - y^​i​ adalah nilai prediksi dari model untuk data ke-i.
@@ -124,8 +126,9 @@ Interpretasi MSE
 
 #### Analisis Hasil
 - Random Forest:
-    Train MSE: 0.188381
-    Test MSE: 0.366601
+    - Train MSE: 0.188381
+   -  Test MSE: 0.366601
+  
 Random Forest menunjukkan performa yang lebih baik pada data pelatihan dibandingkan data uji, tetapi perbedaan antara Train MSE dan Test MSE menunjukkan adanya overfitting. Model ini mungkin terlalu cocok dengan data pelatihan dan tidak generalisasi dengan baik ke data uji.
 
   - Feature Importance
@@ -139,11 +142,13 @@ Random Forest menunjukkan performa yang lebih baik pada data pelatihan dibanding
     - Volume (0.000009): Fitur ini hampir tidak berpengaruh terhadap prediksi.
 
 - Boosting:
-      Train MSE: 0.261435
-      Test MSE: 0.449671
+      - Train MSE: 0.261435
+      - Test MSE: 0.449671
 Boosting juga menunjukkan performa yang lebih baik pada data pelatihan dibandingkan data uji, tetapi perbedaan antara Train MSE dan Test MSE lebih besar daripada Random Forest. Ini menunjukkan bahwa Boosting mungkin mengalami overfitting lebih parah dibandingkan Random Forest.
 
   - Feature Importance
+    
+    ![gambar](https://github.com/user-attachments/assets/2c6f7bcc-e940-407a-bd42-9bc360044860)
     
       - Low (0.675950): Fitur ini juga merupakan fitur paling penting menurut model XGBoost, hampir sama dengan Random Forest.
       - High (0.213537): Fitur ini juga penting, dengan kontribusi yang mirip dengan Random Forest.
