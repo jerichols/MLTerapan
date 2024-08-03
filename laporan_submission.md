@@ -128,10 +128,25 @@ Interpretasi MSE
     Test MSE: 0.366601
 Random Forest menunjukkan performa yang lebih baik pada data pelatihan dibandingkan data uji, tetapi perbedaan antara Train MSE dan Test MSE menunjukkan adanya overfitting. Model ini mungkin terlalu cocok dengan data pelatihan dan tidak generalisasi dengan baik ke data uji.
 
+  - Feature Importance
+    Skor kepentingan fitur yang Anda berikan menunjukkan seberapa besar kontribusi masing-masing fitur terhadap prediksi model. Berikut adalah analisis untuk setiap model:
+    - Low (0.656859): Fitur ini memiliki skor kepentingan tertinggi, yang berarti memiliki pengaruh terbesar terhadap prediksi harga saham oleh model.
+    - High (0.221128): Fitur ini juga cukup penting, tetapi tidak sebesar Low.
+    - Open (0.111589): Fitur ini berkontribusi moderat terhadap prediksi.
+    - Adj Close (0.010415): Fitur ini memiliki pengaruh yang relatif kecil terhadap prediksi.
+    - Volume (0.000009): Fitur ini hampir tidak berpengaruh terhadap prediksi.
+
 - Boosting:
       Train MSE: 0.261435
       Test MSE: 0.449671
 Boosting juga menunjukkan performa yang lebih baik pada data pelatihan dibandingkan data uji, tetapi perbedaan antara Train MSE dan Test MSE lebih besar daripada Random Forest. Ini menunjukkan bahwa Boosting mungkin mengalami overfitting lebih parah dibandingkan Random Forest.
+
+  - Feature Importance
+      - Low (0.675950): Fitur ini juga merupakan fitur paling penting menurut model XGBoost, hampir sama dengan Random Forest.
+      - High (0.213537): Fitur ini juga penting, dengan kontribusi yang mirip dengan Random Forest.
+      - Open (0.089589): Fitur ini memiliki pengaruh lebih kecil dibandingkan dengan Low dan High.
+      - Adj Close (0.020904): Fitur ini memiliki sedikit pengaruh pada model.
+      - Volume (0.000020): Sama seperti di Random Forest, fitur ini hampir tidak berpengaruh.
 
 #### Kesimpulan
 Berdasarkan hasil MSE, Random Forest tampaknya lebih baik dibandingkan Boosting karena MSE-nya pada data uji (0.366601) lebih rendah dibandingkan Boosting (0.449671). Ini menunjukkan bahwa Random Forest mungkin lebih baik dalam generalisasi ke data baru. Meskipun kedua model menunjukkan tanda-tanda overfitting, Random Forest memiliki kinerja yang lebih stabil di data uji dibandingkan Boosting.
