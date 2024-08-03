@@ -129,7 +129,9 @@ Interpretasi MSE
 Random Forest menunjukkan performa yang lebih baik pada data pelatihan dibandingkan data uji, tetapi perbedaan antara Train MSE dan Test MSE menunjukkan adanya overfitting. Model ini mungkin terlalu cocok dengan data pelatihan dan tidak generalisasi dengan baik ke data uji.
 
   - Feature Importance
-    Skor kepentingan fitur yang Anda berikan menunjukkan seberapa besar kontribusi masing-masing fitur terhadap prediksi model. Berikut adalah analisis untuk setiap model:
+    
+    Skor kepentingan fitur  menunjukkan seberapa besar kontribusi masing-masing fitur terhadap prediksi model :
+    
     - Low (0.656859): Fitur ini memiliki skor kepentingan tertinggi, yang berarti memiliki pengaruh terbesar terhadap prediksi harga saham oleh model.
     - High (0.221128): Fitur ini juga cukup penting, tetapi tidak sebesar Low.
     - Open (0.111589): Fitur ini berkontribusi moderat terhadap prediksi.
@@ -154,5 +156,7 @@ Berdasarkan hasil MSE, Random Forest tampaknya lebih baik dibandingkan Boosting 
 ### Dampak Evaluasi terhadap Business Understanding
 
 - **Problem Statement**: Model Random Forest berhasil menjawab permasalahan dengan memberikan prediksi harga saham yang lebih akurat dibandingkan model XGBoost.
-- **Goals**: Tujuan proyek untuk membangun model prediksi yang efektif tercapai dengan memilih Random Forest sebagai model terbaik.
+- **Goals**:
+    - Tujuan proyek untuk membangun model prediksi yang efektif tercapai dengan memilih Random Forest sebagai model terbaik.
+    - 2 Fitur yang memiliki kontribusi besar dalam harga saham adalah Low dan High. 
 - **Solution Statement**: Solusi yang diterapkan memberikan dampak positif dengan meningkatkan akurasi prediksi harga saham dan memenuhi kebutuhan investor untuk keputusan investasi yang lebih informed.
