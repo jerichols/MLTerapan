@@ -40,7 +40,7 @@ Manfaat dari proyek ini meliputi:
 
 ## Data Understanding
 
-Dataset yang digunakan adalah data historis harga saham yang dapat diunduh dari [Data](https://finance.yahoo.com/quote/BBRI.JK/history/). Dataset ini mencakup variabel-variabel berikut:
+Dataset yang digunakan adalah data historis harga salah saham salah satu emiten Bank yaitu BRI dengan kode BBRI. Data historis ini diambil dengan rentang tanggal 2003-11-10 	sampai dengan  	2024-08-01. Data  diunduh dari [Data](https://finance.yahoo.com/quote/BBRI.JK/history/). Dataset ini mencakup variabel-variabel berikut:
 - **Open**: Harga pembukaan saham pada hari tertentu.
 - **High**: Harga tertinggi saham pada hari tertentu.
 - **Low**: Harga terendah saham pada hari tertentu.
