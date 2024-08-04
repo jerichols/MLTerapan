@@ -48,7 +48,7 @@ Dataset yang digunakan adalah data historis harga saham yang dapat diunduh dari 
 - **Volume**: Jumlah saham yang diperdagangkan pada hari tertentu.
 - **Close**: Harga penutupan saham pada hari tertentu (target yang diprediksi).
 
-Fitur Adj CLose didrop dikarenakan nilai ini baru bisa didapatkan jika market telah ditutup dan merupakan penyesuaian nilai "close" itu sendiri. 
+Fitur Adj CLose akan didrop dikarenakan nilai ini baru bisa didapatkan jika market telah ditutup dan merupakan penyesuaian nilai "close" itu sendiri. 
 
 ### Informasi Data
 - **Ukuran Data Frame**: (5134, 6) sebelum diclean, (4799, 6) setelah diclean
@@ -64,6 +64,7 @@ Fitur Adj CLose didrop dikarenakan nilai ini baru bisa didapatkan jika market te
 - **Checking Outlier**: Outlier diidentifikasi dan dihapus untuk memastikan kualitas data yang baik.
 - **Split Data**: Data dibagi menjadi set pelatihan (80%) dan set pengujian (20%).
 - **Feature Scaling**: Menggunakan MinMaxScaler untuk menskalakan fitur ke rentang [0, 1]. Scaling diterapkan terlebih dahulu pada data training, kemudian data testing discaling.
+- **Drop Kolom Adj Close** : Mendrop kolom Adj Close dikarenakan tidak berguna dalam realtime prediction.
 
 ## Modeling
 
@@ -124,42 +125,53 @@ Interpretasi MSE
 - Perbandingan Model: MSE dapat digunakan untuk membandingkan performa beberapa model regresi. Model dengan MSE lebih rendah dianggap lebih baik karena menunjukkan bahwa prediksi model lebih mendekati nilai aktual.
 
 ### Hasil Evaluasi
-![gambar](https://github.com/user-attachments/assets/409cc116-0570-484f-886d-c61f7b55cb4b)
+![gambar](https://github.com/user-attachments/assets/ac622882-6702-4cb7-ac2e-8e22147104c5)
 
 #### Analisis Hasil
 - Random Forest:
-    - Train MSE: 0.188381
-   -  Test MSE: 0.366601
+    - Train MSE : 0.242716
+   -  Test MSE :  0.437886
   
 Random Forest menunjukkan performa yang lebih baik pada data pelatihan dibandingkan data uji, tetapi perbedaan antara Train MSE dan Test MSE menunjukkan adanya overfitting. Model ini mungkin terlalu cocok dengan data pelatihan dan tidak generalisasi dengan baik ke data uji.
 
   - Feature Importance
     
     Skor kepentingan fitur  menunjukkan seberapa besar kontribusi masing-masing fitur terhadap prediksi model :
-    ![gambar](https://github.com/user-attachments/assets/c946e4cc-9f24-4721-87ef-66016ce42853)
-    - Low (0.656859): Fitur ini memiliki skor kepentingan tertinggi, yang berarti memiliki pengaruh terbesar terhadap prediksi harga saham oleh model.
-    - High (0.221128): Fitur ini juga cukup penting, tetapi tidak sebesar Low.
-    - Open (0.111589): Fitur ini berkontribusi moderat terhadap prediksi.
-    - Adj Close (0.010415): Fitur ini memiliki pengaruh yang relatif kecil terhadap prediksi.
-    - Volume (0.000009): Fitur ini hampir tidak berpengaruh terhadap prediksi.
+    ![gambar](https://github.com/user-attachments/assets/a4ab7750-87f2-41c4-ae75-a08780e725fe)
+    - Low (0.708340): Fitur ini memiliki skor kepentingan tertinggi, yang berarti memiliki pengaruh terbesar terhadap prediksi harga saham oleh model.
+    - High (0.186582): Fitur ini juga cukup penting, tetapi tidak sebesar Low.
+    - Open (0.105051): Fitur ini berkontribusi moderat terhadap prediksi.
+    - Volume (0.000028): Fitur ini hampir tidak berpengaruh terhadap prediksi.
 
 - Boosting:
-      - Train MSE: 0.261435
-      - Test MSE: 0.449671
+      - Train MSE : 0.311603
+      - Test MSE: 0.513187
+  
 Boosting juga menunjukkan performa yang lebih baik pada data pelatihan dibandingkan data uji, tetapi perbedaan antara Train MSE dan Test MSE lebih besar daripada Random Forest. Ini menunjukkan bahwa Boosting mungkin mengalami overfitting lebih parah dibandingkan Random Forest.
 
   - Feature Importance
     
-    ![gambar](https://github.com/user-attachments/assets/2c6f7bcc-e940-407a-bd42-9bc360044860)
+    ![gambar](https://github.com/user-attachments/assets/93290b0f-80d2-4ee0-adb3-c579da5aadfe)
     
-      - Low (0.675950): Fitur ini juga merupakan fitur paling penting menurut model XGBoost, hampir sama dengan Random Forest.
-      - High (0.213537): Fitur ini juga penting, dengan kontribusi yang mirip dengan Random Forest.
-      - Open (0.089589): Fitur ini memiliki pengaruh lebih kecil dibandingkan dengan Low dan High.
-      - Adj Close (0.020904): Fitur ini memiliki sedikit pengaruh pada model.
-      - Volume (0.000020): Sama seperti di Random Forest, fitur ini hampir tidak berpengaruh.
+      - Low (0.708340): Fitur ini juga merupakan fitur paling penting menurut model XGBoost, hampir sama dengan Random Forest.
+      - High (0.186582): Fitur ini juga penting, dengan kontribusi yang mirip dengan Random Forest.
+      - Open (0.105051): Fitur ini memiliki pengaruh lebih kecil dibandingkan dengan Low dan High.
+      - Volume (0.000028): Sama seperti di Random Forest, fitur ini hampir tidak berpengaruh.
+   
+  
+#### Prediksi Hasil 
+![gambar](https://github.com/user-attachments/assets/2cd40b37-6a45-40d5-a7e1-a01f0427e144)
+
+- Nilai Aktual (y_true): 3727.208252
+- Prediksi Random Forest (prediksi_RF): 3728.1
+- Prediksi Boosting (prediksi_Boosting): 3734.100098
+  
+  - Observasi:
+      - Prediksi Random Forest (RF): Hasil prediksi dari model Random Forest adalah 3728.1. Selisih antara nilai aktual dan prediksi RF adalah sekitar 0.89. Ini menunjukkan bahwa prediksi RF sangat mendekati nilai aktual.
+      - Prediksi Boosting: Hasil prediksi dari model Boosting adalah 3734.100098. Selisih antara nilai aktual dan prediksi Boosting adalah sekitar 6.89. Meskipun prediksi ini juga cukup dekat dengan nilai aktual, selisihnya lebih besar dibandingkan dengan prediksi dari model RF.
 
 #### Kesimpulan
-Berdasarkan hasil MSE, Random Forest tampaknya lebih baik dibandingkan Boosting karena MSE-nya pada data uji (0.366601) lebih rendah dibandingkan Boosting (0.449671). Ini menunjukkan bahwa Random Forest mungkin lebih baik dalam generalisasi ke data baru. Meskipun kedua model menunjukkan tanda-tanda overfitting, Random Forest memiliki kinerja yang lebih stabil di data uji dibandingkan Boosting.
+Berdasarkan hasil MSE, Random Forest tampaknya lebih baik dibandingkan Boosting karena MSE-nya pada data uji (0.366601) lebih rendah dibandingkan Boosting (0.449671). Ini menunjukkan bahwa Random Forest mungkin lebih baik dalam generalisasi ke data baru. Meskipun kedua model menunjukkan tanda-tanda overfitting, Random Forest memiliki kinerja yang lebih stabil di data uji dibandingkan Boosting. Berdasarkan hasil prediksiModel Random Forest memberikan prediksi yang lebih mendekati nilai aktual dibandingkan dengan model Boosting pada tanggal cek prediksi. Kedua model menghasilkan prediksi yang cukup akurat, namun Random Forest sedikit lebih baik dalam hal mendekati nilai sebenarny
 
 ### Dampak Evaluasi terhadap Business Understanding
 
