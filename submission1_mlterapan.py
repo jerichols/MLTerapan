@@ -102,13 +102,18 @@ df_cleaned.describe()
 
 """### Data Preprocessing
 
-#### Spliting the data into training and testing
+#### Drop Adj Close
 """
+
+# Droping Adj CLose because it is not usefull for realtime prediction
+df_cleaned = df_cleaned.drop(columns=['Adj Close'])
+
+"""#### Spliting the data into training and testing"""
 
 from sklearn.model_selection import train_test_split
 
 # Define features and target
-features = ['Open', 'High', 'Low', 'Adj Close', 'Volume']
+features = ['Open', 'High', 'Low', 'Volume']
 target = 'Close'
 
 # Split the data into features (X) and target (y)
@@ -160,9 +165,24 @@ models = pd.DataFrame(index=['train_mse', 'test_mse'],  columns=[ 'RandomForest'
 
     models.loc['train_mse','RandomForest'] = mean_squared_error(y_pred=RF.predict(X_train_scaled), y_true=y_train)
 
+# Get feature importances from Random Forest
+importances_rf = RF.feature_importances_
+features = X_train.columns
+
+# Create a DataFrame for visualization
+importance_df_rf = pd.DataFrame({'Feature': features, 'Importance': importances_rf})
+importance_df_rf = importance_df_rf.sort_values(by='Importance', ascending=False)
+importance_df_rf
+
+# Plot feature importances
+plt.figure(figsize=(10, 6))
+sns.barplot(x='Importance', y='Feature', data=importance_df_rf, palette='viridis')
+plt.title('Feature Importance - Random Forest')
+plt.show()
+
 """#### Boost Algorithm
 
-#### Hyperparameter Tuning
+
 """
 
 import xgboost as xgb
@@ -184,6 +204,19 @@ train_mse = mean_squared_error(y_true=y_train, y_pred=y_train_pred)
 
 # Update the models DataFrame
 models.loc['train_mse', 'XGBoost'] = train_mse
+
+# Get feature importances from XGBoost
+importances_boosting = boosting.feature_importances_
+importance_df_boosting = pd.DataFrame({'Feature': features, 'Importance': importances_boosting})
+importance_df_boosting = importance_df_boosting.sort_values(by='Importance', ascending=False)
+
+importance_df_boosting
+
+# Plot feature importances
+plt.figure(figsize=(10, 6))
+sns.barplot(x='Importance', y='Feature', data=importance_df_boosting, palette='viridis')
+plt.title('Feature Importance - XGBoost')
+plt.show()
 
 """### Evaluasi Model"""
 
