@@ -48,6 +48,8 @@ Dataset yang digunakan adalah data historis harga saham yang dapat diunduh dari 
 - **Volume**: Jumlah saham yang diperdagangkan pada hari tertentu.
 - **Close**: Harga penutupan saham pada hari tertentu (target yang diprediksi).
 
+Fitur Adj CLose didrop dikarenakan nilai ini baru bisa didapatkan jika market telah ditutup dan merupakan penyesuaian nilai "close" itu sendiri. 
+
 ### Informasi Data
 - **Ukuran Data Frame**: (5134, 6) sebelum diclean, (4799, 6) setelah diclean
 - **Kondisi Data**: Data memiliki Outlier, berjumlah 35
